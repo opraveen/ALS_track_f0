@@ -135,8 +135,8 @@ def track_f0(sampling_freq, dec_rate, wave, window_size, voicing_thresh, silence
     costs = np.zeros((nBand, nFrame))
 
     for band in range(nBand):
-        # sine_wave = filtfilt(bf[band, :], af[band, :], envB)
-        sine_wave = lfilter(bf[band, :], af[band, :], envB)
+        sine_wave = filtfilt(bf[band, :], af[band, :], envB)
+        #sine_wave = lfilter(bf[band, :], af[band, :], envB)
 
         # plt.plot(range(len(sine_wave)), sine_wave)
         # plt.show()
@@ -177,5 +177,3 @@ if np.max(sig) > 1.0:
     sig = sig*1.0/pow(2, 15)
 
 track_f0(rate, rate/SAMPLING_RATE, sig[0:rate], WINDOW_SIZE, VOICING_THRESH, SILENCE_THRESH)
-
-track_band(ds_sig, SAMPLING_RATE, WINDOW_SIZE, 100)
